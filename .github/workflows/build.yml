@@ -257,7 +257,8 @@ jobs:
             run: |
               apk add py3-pip
               pip3 install -U pip pytest pytest-asyncio based58 pybip39 mnemonic typing-extensions jsonalias --break-system-packages
-              pip3 install ${{ env.name }} /io/dist/ --force-reinstall --no-index --no-dependencies --break-system-packages
+              ls -al /io/dist/
+              pip3 install ${{ env.name }} --find-links /io/dist/ --force-reinstall --no-index --no-dependencies --break-system-packages
               python3 -m pytest
 
         - name: Upload wheels

@@ -248,12 +248,7 @@ jobs:
             manylinux: musllinux_1_2
             args: --release --out dist
             maturin-version: ${{ env.maturin_version }}
-        - name: Upload wheels
-          uses: actions/upload-artifact@v2
-          with:
-            name: wheels
-            path: dist
-  
+
         - name: Install built wheel
           uses: addnab/docker-run-action@v3
           with:
@@ -262,8 +257,14 @@ jobs:
             run: |
               apk add py3-pip
               pip3 install -U pip pytest pytest-asyncio based58 pybip39 mnemonic typing-extensions jsonalias --break-system-packages
-              pip3 install ${{ env.name }} --find-links /io/dist/ --force-reinstall --no-index --no-dependencies --break-system-packages
+              pip3 install ${{ env.name }} /io/dist/ --force-reinstall --no-index --no-dependencies --break-system-packages
               python3 -m pytest
+
+        - name: Upload wheels
+          uses: actions/upload-artifact@v2
+          with:
+            name: wheels
+            path: dist
 
   # linux-aarch64:
   #   runs-on: ubuntu-latest

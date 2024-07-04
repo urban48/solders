@@ -228,7 +228,7 @@ jobs:
   #         path: dist
 
     musllinux-aarch64:
-      runs-on: macos-14
+      runs-on: macos-13
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-python@v2

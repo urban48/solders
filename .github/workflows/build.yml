@@ -261,11 +261,11 @@ jobs:
               pip3 install ${{ env.name }} --find-links /io/dist/ --force-reinstall --no-dependencies --break-system-packages
               python3 -m pytest
 
-        - name: Upload wheels
-          uses: actions/upload-artifact@v2
-          with:
-            name: wheels
-            path: dist
+      #  - name: Upload wheels
+      #    uses: actions/upload-artifact@v2
+      #    with:
+      #      name: wheels
+      #      path: dist
 
   # linux-aarch64:
   #   runs-on: ubuntu-latest
